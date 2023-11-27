@@ -9,7 +9,7 @@ __pycache__/
 *.db
 
 # Secret keys and sensitive information
-.env
+env.py
 
 # System files
 .DS_Store
