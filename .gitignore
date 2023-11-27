@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# Secret keys and sensitive information
+.env
+
+# System files
+.DS_Store
