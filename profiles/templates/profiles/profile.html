@@ -5,5 +5,8 @@
 {% endblock %}
 
 {% block content %}
-{{ profile.name }}'s profile.
+<h1>{{ profile.name }}</h1>
+<h2>{{ profile.heading }}</h2>
+
+<a href="{% url 'edit_profile' %}">Edit your profile.</a>
 {% endblock %}
