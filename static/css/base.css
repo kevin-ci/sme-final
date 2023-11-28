@@ -1,3 +1,8 @@
+* {
+    border: 0px;
+    margin: 0px;
+}
+
 :root {
     --blue: #20A4F3;
     --white: #EEEEEE;
@@ -10,6 +15,24 @@ body {
     background-color: var(--white);
     color: var(--black);
 }
+
+body, html {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .footer {
+    flex-shrink: 0;
+  }
 
 #brand-link {
     color: var(--blue);
@@ -30,7 +53,8 @@ body {
     color: var(--white);
 }
 
-.nav-link:focus, .nav-link:hover {
+.nav-link:focus,
+.nav-link:hover {
     color: var(--blue);
 }
 
@@ -39,6 +63,28 @@ body {
     border-color: var(--blue);
 }
 
-#navbarSupportedContent > form > input {
+#navbarSupportedContent>form>input {
     background-color: var(--white);
+}
+
+.footer {
+    background-color: var(--black);
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+.footer>p {
+    color: var(--white);
+    margin-bottom: 0;
+}
+
+.footer #brand-link {
+    color: var(--blue);
+    font-size: x-large;
+}
+
+.footer #brand-pro {
+    color: var(--white);
+    font-size: large;
+    text-transform: uppercase;
 }
