@@ -1,0 +1,44 @@
+:root {
+    --blue: #20A4F3;
+    --white: #EEEEEE;
+    --black: #050505;
+    --charcoal: #2F4858;
+    --red: #D72638;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+#brand-link {
+    color: var(--blue);
+    font-size: xx-large;
+}
+
+#brand-pro {
+    color: var(--white);
+    font-size: x-large;
+    text-transform: uppercase;
+}
+
+.navbar {
+    background-color: var(--black);
+}
+
+.nav-link {
+    color: var(--white);
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: var(--blue);
+}
+
+.btn-outline-success {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+#navbarSupportedContent > form > input {
+    background-color: var(--white);
+}
