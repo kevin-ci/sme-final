@@ -27,11 +27,14 @@
         </div>
         <div class="col-12 col-md-2 col-xl-1">
             <div class="profile-header-container">
+                {% if is_self %}
+                <a href="{% url 'edit_profile' %}" class="profile-header-connect">Edit your profile.</a>
+                {% else %}
                 <div class="profile-header-connect">Connect</div>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
 
-<a href="{% url 'edit_profile' %}">Edit your profile.</a>
 {% endblock %}

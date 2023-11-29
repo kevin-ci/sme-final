@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
+                  <a class="nav-link" href="{% url 'all_profiles' %}">Browse Profiles</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Link</a>
@@ -41,7 +41,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   {% if request.user.is_authenticated %}
-                  <li><a class="dropdown-item" href="{% url 'profile' %}">Your Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Your Profile</a></li>
                   <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                   {% else %}
                   <li><a class="dropdown-item" href="{% url 'account_login' %}">Log In</a></li>
