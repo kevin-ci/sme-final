@@ -5,6 +5,7 @@ from .forms import UserProfileForm
 
 # Create your views here.
 
+
 @login_required
 def profile(request):
     """ Display the user's profile. """
@@ -15,6 +16,7 @@ def profile(request):
     }
 
     return render(request, template, context)
+
 
 @login_required
 def edit_profile(request):
@@ -34,6 +36,16 @@ def edit_profile(request):
     context = {
         'form': form,
         'profile': profile,
+    }
+
+    return render(request, template, context)
+
+
+def view_profiles(request):
+    profiles = UserProfile.objects.all()
+    template = 'profiles/view_profiles.html'
+    context = {
+        'profiles': profiles,
     }
 
     return render(request, template, context)

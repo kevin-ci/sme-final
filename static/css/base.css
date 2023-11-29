@@ -16,7 +16,8 @@ body {
     color: var(--black);
 }
 
-body, html {
+body,
+html {
     height: 100%;
 }
 
@@ -24,15 +25,15 @@ body, html {
     display: flex;
     flex-direction: column;
     min-height: 100%;
-  }
+}
 
-  .content {
+.content {
     flex: 1;
-  }
+}
 
-  .footer {
+.footer {
     flex-shrink: 0;
-  }
+}
 
 #brand-link {
     color: var(--blue);
@@ -103,4 +104,65 @@ body, html {
 .profile-header-connect {
     position: absolute;
     bottom: 0;
+}
+
+.all-profiles-image {
+    border-radius: 50%;
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+}
+
+.dropdown-item {
+    color: var(--black);
+}
+
+@media (max-width: 369.98px) {
+    .all-profiles-image {
+        width: 50px;
+    }
+}
+
+
+@media (min-width: 370px) and (max-width: 575.98px) {
+
+    /* Bootstrap XS breakpoint */
+    .all-profiles-image {
+        width: 100px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    /* Bootstrap S breakpoint */
+    .all-profiles-image {
+        width: 100px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    /* Bootstrap M breakpoint */
+    .all-profiles-image {
+        width: 100px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    /* Bootstrap L breakpoint */
+    .all-profiles-image {
+        width: 75px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    /* Bootstrap XL breakpoint */
+    .all-profiles-image {
+        width: 100px;
+    }
 }

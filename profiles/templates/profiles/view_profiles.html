@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+LinkPro - Browse Profiles
+{% endblock %}
+
+{% block content %}
+{% if profiles %}
+<div class="container">
+  <div class="row">
+    {% for profile in profiles %}
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <h5 class="card-title">{{ profile.name }}</h5>
+              <p class="card-text">{{ profile.heading }}</p>
+              <a href="#" class="btn btn-primary">View Profile</a>
+            </div>
+            <div class="col-4">
+              {% if "placeholder" in profile.profile_image.url %}
+              <img class="all-profiles-image" src="{% static 'images/placeholder.jpg' %}"
+                alt="No profile image available.">
+              {% else %}
+              <img class="all-profiles-image" src="{{ profile.profile_image.url }}"
+                alt="{{ profile.name }}'s profile image.">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<p>There are no profiles to show!</p>
+{% endif %}
+{% endblock %}
