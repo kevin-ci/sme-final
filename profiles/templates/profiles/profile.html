@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 {{ profile.name }} on LinkPro
@@ -6,6 +7,11 @@
 
 {% block content %}
 <h1>{{ profile.name }}</h1>
+{% if "placeholder" in profile.profile_image.url %}
+<img class="profile-image" src="{% static 'images/placeholder.jpg' %}" alt="No profile image available.">
+{% else %}
+<img class="profile-image" src=" {{ profile.profile_image.url }}" alt="{{ profile.name }}'s profile image.">
+{% endif %}
 <h2>{{ profile.heading }}</h2>
 
 <a href="{% url 'edit_profile' %}">Edit your profile.</a>
