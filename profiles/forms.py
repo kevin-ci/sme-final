@@ -13,5 +13,5 @@ class SignupForm(forms.Form):
     def signup(self, request, user):
         user.refresh_from_db()
         user.profile.name = self.cleaned_data['name']
-        user.profile.heading = self.cleaned_data['headline']
+        user.profile.headline = self.cleaned_data['headline']
         user.save()

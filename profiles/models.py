@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     name = models.CharField(max_length=50, null=True, blank=True)
-    heading = models.CharField(max_length=50, null=True, blank=True)
+    headline = models.CharField(max_length=50, null=True, blank=True)
     profile_image = CloudinaryField('image', default='placeholder')
     
     def __str__(self):
