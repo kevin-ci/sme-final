@@ -6,13 +6,35 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ profile.name }}</h1>
-{% if "placeholder" in profile.profile_image.url %}
-<img class="profile-page-image" src="{% static 'images/placeholder.jpg' %}" alt="No profile image available.">
-{% else %}
-<img class="profile-page-image" src=" {{ profile.profile_image.url }}" alt="{{ profile.name }}'s profile image.">
-{% endif %}
-<h2>{{ profile.heading }}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-2 col-xl-1">
+            {% if "placeholder" in profile.profile_image.url %}
+            <img class="profile-page-image" src="{% static 'images/placeholder.jpg' %}"
+                alt="No profile image available.">
+            {% else %}
+            <img class="profile-page-image" src=" {{ profile.profile_image.url }}"
+                alt="{{ profile.name }}'s profile image.">
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-8 col-xl-10">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">{{ profile.name }}</h1>
+                    <p class="lead">{{ profile.heading }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-2 col-xl-1">
+            <div class="profile-header-container">
+                <div class="profile-header-connect">Connect</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <a href="{% url 'edit_profile' %}">Edit your profile.</a>
 {% endblock %}
