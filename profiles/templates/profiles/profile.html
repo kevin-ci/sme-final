@@ -30,7 +30,11 @@
                 {% if is_self %}
                 <a href="{% url 'edit_profile' %}" class="profile-header-connect">Edit your profile.</a>
                 {% else %}
-                <div class="profile-header-connect">Connect</div>
+                {% if is_connected %}
+                <a href="{% url 'remove_connection' profile.id %}" class="profile-header-connect">Remove connection</a>
+                {% else %}
+                <a href="{% url 'connect' profile.id %}" class="profile-header-connect">Connect</a>
+                {% endif %}
                 {% endif %}
             </div>
         </div>

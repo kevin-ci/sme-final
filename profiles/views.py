@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, Connection
 from .forms import UserProfileForm
 
 # Create your views here.
@@ -12,11 +12,19 @@ def view_profile(request, user_id):
     """ Display the user's profile. """
     user = get_object_or_404(User, id=user_id)
     profile = get_object_or_404(UserProfile, user=user)
-    is_self = True if user_id == str(request.user.id) else False
+    
+    is_self = user_id == str(request.user.id)
+    is_connected = False
+    
+    if not is_self:
+        logged_in_profile = get_object_or_404(UserProfile, user=request.user)
+        is_connected = Connection.connection_exists(profile, logged_in_profile)
+
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'is_self': is_self,
+        'is_connected': is_connected,
     }
 
     return render(request, template, context)
@@ -53,3 +61,24 @@ def view_profiles(request):
     }
 
     return render(request, template, context)
+
+@login_required
+def add_connection(request, id):
+    user = get_object_or_404(User, id=id)
+    profile = get_object_or_404(UserProfile, user=user)
+    logged_in_profile = get_object_or_404(UserProfile, user=request.user)
+
+    connection = Connection(from_user=logged_in_profile, to_user=profile)
+    connection.save()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+    
+@login_required
+def remove_connection(request, id):
+    user = get_object_or_404(User, id=id)
+    profile = get_object_or_404(UserProfile, user=user)
+    logged_in_profile = get_object_or_404(UserProfile, user=request.user)
+
+    connection = Connection.get_connection(logged_in_profile, profile)
+    connection.delete()
+    return redirect(request.META.get('HTTP_REFERER'))
