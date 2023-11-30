@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
+from companies.models import Company
 
 # Create your models here.
 
@@ -41,3 +42,11 @@ class Connection(models.Model):
             (models.Q(from_user=user_profile_a) & models.Q(to_user=user_profile_b)) |
             (models.Q(from_user=user_profile_b) & models.Q(to_user=user_profile_a))
         )
+        
+class Job(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    description = models.TextField()
