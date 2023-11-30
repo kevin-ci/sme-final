@@ -45,8 +45,7 @@
     {% for job in jobs %}
     <div class="card">
         <div class="card-header">
-            {{ job.company.name }} ({{ job.start_date }} - {% if job.end_date is None %}Present{% else %}{{ job.end_date
-            }}{% endif %})
+            {{ job.company.name }} ({{ job.start_date }} - {% if job.end_date is None %}Present{% else %}{{ job.end_date }}{% endif %})
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ job.title }}</h5>
