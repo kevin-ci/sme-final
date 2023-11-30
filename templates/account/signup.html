@@ -1,4 +1,4 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load allauth i18n socialaccount %}
 {% block head_title %}
     {% trans "Signup" %}
@@ -23,9 +23,7 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
+        <button type="submit" class="btn btn-primary" tags="prominent,signup">Sign Up</button>
         {% endslot %}
     {% endelement %}
     {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}

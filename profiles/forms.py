@@ -31,9 +31,16 @@ class JobForm(forms.ModelForm):
         self.fields = {field_name: self.fields[field_name] for field_name in field_order}
         
 class SignupForm(forms.Form):
-    name = forms.CharField(max_length=50, label='Your name')
-    headline = forms.CharField(max_length=50, label='Your profile headline')
-    
+    name = forms.CharField(
+        max_length=50,
+        label='Your name',
+        widget=forms.TextInput(attrs={'placeholder': 'John Smith'})
+    )
+    headline = forms.CharField(
+        max_length=50,
+        label='Your profile headline',
+        widget=forms.TextInput(attrs={'placeholder': 'Software Developer'})
+    )    
     def signup(self, request, user):
         user.refresh_from_db()
         user.profile.name = self.cleaned_data['name']

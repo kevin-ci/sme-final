@@ -1,4 +1,4 @@
-{% extends "account/base_manage.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Sign Out" %}
@@ -19,9 +19,7 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
+        <button type="submit" class="btn btn-primary">Sign Out</button>
         {% endslot %}
     {% endelement %}
 {% endblock content %}
