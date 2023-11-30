@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from .models import UserProfile, Connection
 from .forms import UserProfileForm
 
@@ -69,8 +70,12 @@ def add_connection(request, id):
     logged_in_profile = get_object_or_404(UserProfile, user=request.user)
 
     connection = Connection(from_user=logged_in_profile, to_user=profile)
-    connection.save()
-    return redirect(request.META.get('HTTP_REFERER'))
+    
+    try:
+        connection.save()
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'failure', 'error_message': str(e)})
 
     
 @login_required
@@ -80,5 +85,9 @@ def remove_connection(request, id):
     logged_in_profile = get_object_or_404(UserProfile, user=request.user)
 
     connection = Connection.get_connection(logged_in_profile, profile)
-    connection.delete()
-    return redirect(request.META.get('HTTP_REFERER'))
+
+    try:
+        connection.delete()
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'failure', 'error_message': str(e)})

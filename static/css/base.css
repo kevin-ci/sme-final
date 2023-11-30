@@ -110,12 +110,6 @@ html {
     border-radius: 50%;
 }
 
-.btn-primary {
-    background-color: var(--blue);
-    color: var(--white);
-    border: none;
-}
-
 .dropdown-item {
     color: var(--black);
 }

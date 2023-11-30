@@ -31,14 +31,57 @@
                 <a href="{% url 'edit_profile' %}" class="profile-header-connect">Edit your profile.</a>
                 {% else %}
                 {% if is_connected %}
-                <a href="{% url 'remove_connection' profile.id %}" class="profile-header-connect">Remove connection</a>
-                {% else %}
-                <a href="{% url 'connect' profile.id %}" class="profile-header-connect">Connect</a>
-                {% endif %}
-                {% endif %}
+                <button class="btn btn-primary profile-header-connect" id="connect-button"
+                    data-user-id="{{ profile.id }}">Disconnect</a>
+                    {% else %}
+                    <button class="btn btn-primary profile-header-connect" id="connect-button"
+                        data-user-id="{{ profile.id }}">Connect</a>
+                        {% endif %}
+                        {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let connectButton = document.getElementById('connect-button');
+
+        connectButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var link = this;
+            var userId = link.getAttribute('data-user-id');
+            var csrfToken = '{{ csrf_token }}';
+
+            link.setAttribute('disabled', 'true');
+
+            var url = link.innerText === 'Connect' ? `connect/${userId}` : `disconnect/${userId}`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({})
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (data.status === 'success') {
+                        link.innerText = link.innerText === 'Connect' ? 'Disconnect' : 'Connect';
+                        link.removeAttribute('disabled');
+                    } else {
+                        link.removeAttribute('disabled');
+                    }
+                })
+                .catch(function (error) {
+                    link.removeAttribute('disabled');
+                });
+        });
+    });
+</script>
 
 {% endblock %}
