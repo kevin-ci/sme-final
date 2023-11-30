@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add a role
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{% url 'add_job' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="btn btn-primary" type="submit">Add Job</button>
+</form>
+{% endblock %}

@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+    "crispy_bootstrap5",
     'cloudinary',
     'home',
     'profiles',
@@ -158,3 +160,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.SignupForm'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

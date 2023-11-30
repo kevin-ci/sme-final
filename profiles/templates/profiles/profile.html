@@ -28,7 +28,7 @@
         <div class="col-12 col-md-2 col-xl-1">
             <div class="profile-header-container">
                 {% if is_self %}
-                <a href="{% url 'edit_profile' %}" class="profile-header-connect">Edit your profile.</a>
+                <a href="{% url 'edit_profile' %}" class="profile-header-connect btn btn-primary">Edit</a>
                 {% else %}
                 {% if is_connected %}
                 <button class="btn btn-primary profile-header-connect" id="connect-button"
@@ -41,6 +41,29 @@
             </div>
         </div>
     </div>
+    {% if jobs %}
+    {% for job in jobs %}
+    <div class="card">
+        <div class="card-header">
+            {{ job.company.name }} ({{ job.start_date }} - {% if job.end_date is None %}Present{% else %}{{ job.end_date
+            }}{% endif %})
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ job.title }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            {% if is_self %}
+            <a href="{% url 'edit_job' id=job.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete_job' id=job.id %}" class="btn btn-warning">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    No jobs to show.
+    {% endif %}
+    {% if is_self %}
+    <a href="{% url 'add_job' %}" class="btn btn-primary">Add Job</a>
+    {% endif %}
 </div>
 
 <script>
