@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row profile-header">
         <div class="col-12 col-md-2 col-xl-1">
             {% if "placeholder" in profile.profile_image.url %}
             <img class="profile-page-image" src="{% static 'images/placeholder.jpg' %}"
@@ -41,14 +41,17 @@
             </div>
         </div>
     </div>
+    <hr>
+    <h2>Employment History</h2>
     {% if jobs %}
     {% for job in jobs %}
     <div class="card">
         <div class="card-header">
-            {{ job.company.name }} ({{ job.start_date }} - {% if job.end_date is None %}Present{% else %}{{ job.end_date }}{% endif %})
+            <h3>{{ job.company.name }}</h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ job.title }}</h5>
+            <h4 class="card-title">{{ job.title }}</h4>
+            <h6>{{ job.start_date }} - {% if job.end_date is None %}Present{% else %}{{ job.end_date }}{% endif %}</h6>
             <p class="card-text">{{ job.description }}</p>
             {% if is_self %}
             <a href="{% url 'edit_job' id=job.id %}" class="btn btn-primary">Edit</a>
@@ -61,10 +64,40 @@
     No jobs to show.
     {% endif %}
     {% if is_self %}
-    <a href="{% url 'add_job' %}" class="btn btn-primary">Add Job</a>
+    <a href="{% url 'add_job' %}" class="btn btn-primary add-job-btn">Add Job</a>
     {% endif %}
+    <hr>
+    <h2>Connections</h2>
+    <div class="row">
+        {% for profile in connections %}
+    
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">{{ profile.name }}</h5>
+                  <p class="card-text">{{ profile.headline }}</p>
+                  <a href="{% url 'profile' profile.user.id %}" class="btn btn-primary">View Profile</a>
+                </div>
+                <div class="col-4">
+                  {% if "placeholder" in profile.profile_image.url %}
+                  <img class="all-profiles-image" src="{% static 'images/placeholder.jpg' %}"
+                    alt="No profile image available.">
+                  {% else %}
+                  <img class="all-profiles-image" src="{{ profile.profile_image.url }}"
+                    alt="{{ profile.name }}'s profile image.">
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        {% endfor %}
+      </div>
+      <hr>
 </div>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let connectButton = document.getElementById('connect-button');

@@ -116,15 +116,14 @@ body {
     border-radius: 50%;
 }
 
+.profile-header {
+    margin-top: 30px;
+}
+
 .profile-header-container {
     position: relative;
     width: 100%;
     height: 100%;
-}
-
-.profile-header-connect {
-    position: absolute;
-    bottom: 0;
 }
 
 .all-profiles-image {
@@ -133,6 +132,10 @@ body {
 
 .dropdown-item {
     color: var(--black);
+}
+
+.add-job-btn {
+    margin-top: 30px;
 }
 
 @media (max-width: 369.98px) {
@@ -164,6 +167,11 @@ body {
     .all-profiles-image {
         width: 100px;
     }
+
+    .profile-header-connect {
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -172,6 +180,11 @@ body {
     .all-profiles-image {
         width: 75px;
     }
+
+    .profile-header-connect {
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -179,5 +192,10 @@ body {
     /* Bootstrap XL breakpoint */
     .all-profiles-image {
         width: 100px;
+    }
+
+    .profile-header-connect {
+        position: absolute;
+        bottom: 0;
     }
 }

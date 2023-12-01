@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from itertools import chain
 from .models import UserProfile, Connection, Company
 from .forms import UserProfileForm, JobForm
 
@@ -20,13 +21,22 @@ def view_profile(request, user_id):
     if not is_self:
         logged_in_profile = get_object_or_404(UserProfile, user=request.user)
         is_connected = Connection.connection_exists(profile, logged_in_profile)
+        
+    connections_from = Connection.objects.filter(from_user=profile).select_related('to_user')
+    connections_to = Connection.objects.filter(to_user=profile).select_related('from_user')
 
+    profiles_from = [connection.to_user for connection in connections_from]
+    profiles_to = [connection.from_user for connection in connections_to]
+
+    all_connected_profiles = list(set(chain(profiles_from, profiles_to)))
+    
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'is_self': is_self,
         'is_connected': is_connected,
         'jobs': jobs,
+        'connections': all_connected_profiles,
     }
 
     return render(request, template, context)
