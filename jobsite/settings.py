@@ -32,7 +32,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['8000-kevinci-smefinal-0e3zy8q3s0m.ws-eu106.gitpod.io']
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-kevinci-smefinal-0e3zy8q3s0m.ws-eu106.gitpod.io']
+    'https://8000-kevinci-smefinal-0e3zy8q3s0m.ws-eu106.gitpod.io',
+    'https://link-pro-app.onrender.com/']
 
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -74,7 +75,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
