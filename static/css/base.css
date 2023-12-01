@@ -113,6 +113,7 @@ body {
 
 .profile-page-image {
     width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
@@ -141,6 +142,7 @@ body {
 @media (max-width: 369.98px) {
     .all-profiles-image {
         width: 50px;
+        height: 50px;
     }
 }
 
@@ -150,6 +152,7 @@ body {
     /* Bootstrap XS breakpoint */
     .all-profiles-image {
         width: 100px;
+        height: 100px;
     }
 }
 
@@ -158,6 +161,7 @@ body {
     /* Bootstrap S breakpoint */
     .all-profiles-image {
         width: 100px;
+        height: 100px;
     }
 }
 
@@ -166,6 +170,7 @@ body {
     /* Bootstrap M breakpoint */
     .all-profiles-image {
         width: 100px;
+        height: 100px;
     }
 
     .profile-header-connect {
@@ -179,6 +184,7 @@ body {
     /* Bootstrap L breakpoint */
     .all-profiles-image {
         width: 75px;
+        height: 75px;
     }
 
     .profile-header-connect {
@@ -192,6 +198,7 @@ body {
     /* Bootstrap XL breakpoint */
     .all-profiles-image {
         width: 100px;
+        height: 100px;
     }
 
     .profile-header-connect {
